@@ -153,6 +153,7 @@ const (
 	webDefaultFlexShrink float32 = 1
 )
 
+// 这里调整默认值与https://yogalayout.com/playground统一, 方便测试
 var (
 	nodeDefaults = Node{
 		Parent:             nil,
@@ -169,8 +170,9 @@ var (
 			JustifyContent: JustifyFlexStart,
 			AlignItems:     AlignStretch,
 			AlignContent:   AlignFlexStart,
+			AlignSelf:      AlignAuto,
 			Direction:      DirectionInherit,
-			FlexDirection:  FlexDirectionColumn,
+			FlexDirection:  FlexDirectionRow,
 			Overflow:       OverflowVisible,
 			Display:        DisplayFlex,
 			Dimensions:     defaultDimensionValuesAutoUnit,

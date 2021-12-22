@@ -244,6 +244,29 @@ func AlignToString(value Align) string {
 	return "unknown"
 }
 
+func ParseAlign(str string) Align {
+	switch str {
+	case "auto":
+		return AlignAuto
+	case "flex-start":
+		return AlignFlexStart
+	case "center":
+		return AlignCenter
+	case "flex-end":
+		return AlignFlexEnd
+	case "stretch":
+		return AlignStretch
+	case "baseline":
+		return AlignBaseline
+	case "space-between":
+		return AlignSpaceBetween
+	case "space-around":
+		return AlignSpaceAround
+	}
+
+	return AlignAuto
+}
+
 // DimensionToString returns string version of Dimension enum
 func DimensionToString(value Dimension) string {
 	switch value {
@@ -328,6 +351,21 @@ func FlexDirectionToString(value FlexDirection) string {
 	return "unknown"
 }
 
+func ParseFlexDirection(str string) FlexDirection {
+	switch str {
+	case "column":
+		return FlexDirectionColumn
+	case "column-reverse":
+		return FlexDirectionColumnReverse
+	case "row":
+		return FlexDirectionRow
+	case "row-reverse":
+		return FlexDirectionRowReverse
+	}
+
+	return FlexDirectionColumn
+}
+
 // JustifyToString returns string version of Justify enum
 func JustifyToString(value Justify) string {
 	switch value {
@@ -343,6 +381,22 @@ func JustifyToString(value Justify) string {
 		return "space-around"
 	}
 	return "unknown"
+}
+
+func ParseJustify(str string) Justify {
+	switch str {
+	case "flex-start":
+		return JustifyFlexStart
+	case "center":
+		return JustifyCenter
+	case "flex-end":
+		return JustifyFlexEnd
+	case "space-between":
+		return JustifySpaceBetween
+	case "space-around":
+		return JustifySpaceAround
+	}
+	return JustifyFlexStart
 }
 
 // LogLevelToString returns string version of LogLevel enum
