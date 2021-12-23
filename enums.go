@@ -466,6 +466,17 @@ func PositionTypeToString(value PositionType) string {
 	return "unknown"
 }
 
+func ParsePositionType(str string) PositionType {
+	switch str {
+	case "relative":
+		return PositionTypeRelative
+	case "absolute":
+		return PositionTypeAbsolute
+	}
+
+	return PositionTypeRelative
+}
+
 // PrintOptionsToString returns string version of PrintOptions enum
 func PrintOptionsToString(value PrintOptions) string {
 	switch value {

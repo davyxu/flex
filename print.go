@@ -17,6 +17,7 @@ type NodePrinter struct {
 func NodePrint(node *Node, options PrintOptions) {
 	printer := NewNodePrinter(os.Stdout, options)
 	printer.Print(node)
+	printer.printf("\n")
 }
 
 // NewNodePrinter creates new node printer.
