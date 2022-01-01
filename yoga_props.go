@@ -145,6 +145,10 @@ func (node *Node) StyleSetPositionType(positionType PositionType) {
 	}
 }
 
+func (node *Node) StyleGetPositionType() PositionType {
+	return node.Style.PositionType
+}
+
 // StyleSetPosition sets position
 func (node *Node) StyleSetPosition(edge Edge, position float32) {
 	pos := &node.Style.Position[edge]
@@ -192,12 +196,20 @@ func (node *Node) StyleSetFlexDirection(flexDirection FlexDirection) {
 	}
 }
 
+func (node *Node) StyleGetFlexDirection() FlexDirection {
+	return node.Style.FlexDirection
+}
+
 // StyleSetJustifyContent sets justify content
 func (node *Node) StyleSetJustifyContent(justifyContent Justify) {
 	if node.Style.JustifyContent != justifyContent {
 		node.Style.JustifyContent = justifyContent
 		nodeMarkDirtyInternal(node)
 	}
+}
+
+func (node *Node) StyleGetJustifyContent() Justify {
+	return node.Style.JustifyContent
 }
 
 // StyleSetAlignContent sets align content
@@ -208,6 +220,10 @@ func (node *Node) StyleSetAlignContent(alignContent Align) {
 	}
 }
 
+func (node *Node) StyleGetAlignContent() Align {
+	return node.Style.AlignContent
+}
+
 // StyleSetAlignItems sets align content
 func (node *Node) StyleSetAlignItems(alignItems Align) {
 	if node.Style.AlignItems != alignItems {
@@ -216,12 +232,20 @@ func (node *Node) StyleSetAlignItems(alignItems Align) {
 	}
 }
 
+func (node *Node) StyleGetAlignItems() Align {
+	return node.Style.AlignItems
+}
+
 // StyleSetAlignSelf sets align self
 func (node *Node) StyleSetAlignSelf(alignSelf Align) {
 	if node.Style.AlignSelf != alignSelf {
 		node.Style.AlignSelf = alignSelf
 		nodeMarkDirtyInternal(node)
 	}
+}
+
+func (node *Node) StyleGetAlignSelf() Align {
+	return node.Style.AlignSelf
 }
 
 // StyleSetFlexWrap sets flex wrap
@@ -394,6 +418,11 @@ func (node *Node) StyleSetBorder(edge Edge, border float32) {
 // StyleGetBorder gets border
 func (node *Node) StyleGetBorder(edge Edge) float32 {
 	return node.Style.Border[edge].Value
+}
+
+// StyleGetBorder gets border
+func (node *Node) StyleGetBorderV(edge Edge) Value {
+	return node.Style.Border[edge]
 }
 
 // StyleSetMinWidth sets min width
