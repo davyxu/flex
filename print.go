@@ -54,20 +54,20 @@ func (printer *NodePrinter) printNode(node *Node, level int) {
 		printer.printf("style=\"")
 		if node.Style.FlexDirection != nodeDefaults.Style.FlexDirection {
 			printer.printf("flex-direction: %s; ",
-				FlexDirectionToString(node.Style.FlexDirection))
+				node.Style.FlexDirection.String())
 		}
 		if node.Style.JustifyContent != nodeDefaults.Style.JustifyContent {
 			printer.printf("justify-content: %s; ",
-				JustifyToString(node.Style.JustifyContent))
+				node.Style.JustifyContent.String())
 		}
 		if node.Style.AlignItems != nodeDefaults.Style.AlignItems {
-			printer.printf("align-items: %s; ", AlignToString(node.Style.AlignItems))
+			printer.printf("align-items: %s; ", node.Style.AlignItems.String())
 		}
 		if node.Style.AlignContent != nodeDefaults.Style.AlignContent {
-			printer.printf("align-content: %s; ", AlignToString(node.Style.AlignContent))
+			printer.printf("align-content: %s; ", node.Style.AlignContent.String())
 		}
 		if node.Style.AlignSelf != nodeDefaults.Style.AlignSelf {
-			printer.printf("align-self: %s; ", AlignToString(node.Style.AlignSelf))
+			printer.printf("align-self: %s; ", node.Style.AlignSelf.String())
 		}
 
 		printer.printFloatIfNotUndefined(node, "flex-grow", node.Style.FlexGrow)
@@ -100,7 +100,7 @@ func (printer *NodePrinter) printNode(node *Node, level int) {
 
 		if node.Style.PositionType != nodeDefaults.Style.PositionType {
 			printer.printf("position: %s; ",
-				PositionTypeToString(node.Style.PositionType))
+				node.Style.PositionType.String())
 		}
 
 		printer.printEdgeIfNotUndefined(node, "left", node.Style.Position[:], EdgeLeft)

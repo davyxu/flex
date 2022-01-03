@@ -24,6 +24,44 @@ const (
 	AlignSpaceAround
 )
 
+func (self Align) String() string {
+	return AlignEnumValues[self]
+}
+
+func ParseAlign(str string) Align {
+	return AlignStringToEnum[str]
+}
+
+var (
+	AlignEnumValues = []string{
+		AlignAuto:         "auto",
+		AlignFlexStart:    "flex-start",
+		AlignCenter:       "center",
+		AlignFlexEnd:      "flex-end",
+		AlignStretch:      "stretch",
+		AlignBaseline:     "baseline",
+		AlignSpaceBetween: "space-between",
+		AlignSpaceAround:  "space-around",
+	}
+
+	AlignStringToEnum = map[string]Align{}
+)
+
+func init() {
+	for k, v := range AlignEnumValues {
+		AlignStringToEnum[v] = Align(k)
+	}
+	for k, v := range FlexDirectionEnumValues {
+		FlexDirectionStringToEnum[v] = FlexDirection(k)
+	}
+	for k, v := range JustifyEnumValues {
+		JustifyStringToEnum[v] = Justify(k)
+	}
+	for k, v := range PositionTypeEnumValues {
+		PositionTypeStringToEnum[v] = PositionType(k)
+	}
+}
+
 // Dimension represents dimention
 type Dimension int
 
@@ -111,6 +149,28 @@ const (
 	FlexDirectionRowReverse
 )
 
+func (self FlexDirection) String() string {
+	return FlexDirectionEnumValues[self]
+}
+
+func ParseFlexDirection(str string) FlexDirection {
+	if v, ok := FlexDirectionStringToEnum[str]; ok {
+		return v
+	}
+
+	return FlexDirectionRow
+}
+
+var (
+	FlexDirectionEnumValues = []string{
+		FlexDirectionColumn:        "column",
+		FlexDirectionColumnReverse: "column-reverse",
+		FlexDirectionRow:           "row",
+		FlexDirectionRowReverse:    "row-reverse",
+	}
+	FlexDirectionStringToEnum = map[string]FlexDirection{}
+)
+
 // Justify is "justify" property
 type Justify int
 
@@ -125,6 +185,21 @@ const (
 	JustifySpaceBetween
 	// JustifySpaceAround is "space-around"
 	JustifySpaceAround
+)
+
+func (self Justify) String() string {
+	return JustifyEnumValues[self]
+}
+
+var (
+	JustifyEnumValues = []string{
+		JustifyFlexStart:    "flex-start",
+		JustifyCenter:       "center",
+		JustifyFlexEnd:      "flex-end",
+		JustifySpaceBetween: "space-between",
+		JustifySpaceAround:  "space-around",
+	}
+	JustifyStringToEnum = map[string]Justify{}
 )
 
 // LogLevel represents log level
@@ -187,6 +262,27 @@ const (
 	PositionTypeAbsolute
 )
 
+func (self PositionType) String() string {
+	return PositionTypeEnumValues[self]
+}
+
+func ParsePositionType(str string) PositionType {
+	if v, ok := PositionTypeStringToEnum[str]; ok {
+		return v
+	}
+
+	return PositionTypeRelative
+}
+
+var (
+	PositionTypeEnumValues = []string{
+		PositionTypeRelative: "relative",
+		PositionTypeAbsolute: "absolute",
+	}
+
+	PositionTypeStringToEnum = map[string]PositionType{}
+)
+
 type PrintOptions int
 
 const (
@@ -220,52 +316,6 @@ const (
 	// WrapWrapReverse is "reverse"
 	WrapWrapReverse
 )
-
-// AlignToString returns string version of Align enum
-func AlignToString(value Align) string {
-	switch value {
-	case AlignAuto:
-		return "auto"
-	case AlignFlexStart:
-		return "flex-start"
-	case AlignCenter:
-		return "center"
-	case AlignFlexEnd:
-		return "flex-end"
-	case AlignStretch:
-		return "stretch"
-	case AlignBaseline:
-		return "baseline"
-	case AlignSpaceBetween:
-		return "space-between"
-	case AlignSpaceAround:
-		return "space-around"
-	}
-	return "unknown"
-}
-
-func ParseAlign(str string) Align {
-	switch str {
-	case "auto":
-		return AlignAuto
-	case "flex-start":
-		return AlignFlexStart
-	case "center":
-		return AlignCenter
-	case "flex-end":
-		return AlignFlexEnd
-	case "stretch":
-		return AlignStretch
-	case "baseline":
-		return AlignBaseline
-	case "space-between":
-		return AlignSpaceBetween
-	case "space-around":
-		return AlignSpaceAround
-	}
-
-	return AlignAuto
-}
 
 // DimensionToString returns string version of Dimension enum
 func DimensionToString(value Dimension) string {
@@ -332,53 +382,6 @@ func ExperimentalFeatureToString(value ExperimentalFeature) string {
 	switch value {
 	case ExperimentalFeatureWebFlexBasis:
 		return "web-flex-basis"
-	}
-	return "unknown"
-}
-
-// FlexDirectionToString returns string version of FlexDirection enum
-func FlexDirectionToString(value FlexDirection) string {
-	switch value {
-	case FlexDirectionColumn:
-		return "column"
-	case FlexDirectionColumnReverse:
-		return "column-reverse"
-	case FlexDirectionRow:
-		return "row"
-	case FlexDirectionRowReverse:
-		return "row-reverse"
-	}
-	return "unknown"
-}
-
-func ParseFlexDirection(str string) FlexDirection {
-	switch str {
-	case "column":
-		return FlexDirectionColumn
-	case "column-reverse":
-		return FlexDirectionColumnReverse
-	case "row":
-		return FlexDirectionRow
-	case "row-reverse":
-		return FlexDirectionRowReverse
-	}
-
-	return FlexDirectionColumn
-}
-
-// JustifyToString returns string version of Justify enum
-func JustifyToString(value Justify) string {
-	switch value {
-	case JustifyFlexStart:
-		return "flex-start"
-	case JustifyCenter:
-		return "center"
-	case JustifyFlexEnd:
-		return "flex-end"
-	case JustifySpaceBetween:
-		return "space-between"
-	case JustifySpaceAround:
-		return "space-around"
 	}
 	return "unknown"
 }
@@ -453,28 +456,6 @@ func OverflowToString(value Overflow) string {
 		return "scroll"
 	}
 	return "unknown"
-}
-
-// PositionTypeToString returns string version of PositionType enum
-func PositionTypeToString(value PositionType) string {
-	switch value {
-	case PositionTypeRelative:
-		return "relative"
-	case PositionTypeAbsolute:
-		return "absolute"
-	}
-	return "unknown"
-}
-
-func ParsePositionType(str string) PositionType {
-	switch str {
-	case "relative":
-		return PositionTypeRelative
-	case "absolute":
-		return PositionTypeAbsolute
-	}
-
-	return PositionTypeRelative
 }
 
 // PrintOptionsToString returns string version of PrintOptions enum
