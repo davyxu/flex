@@ -272,6 +272,10 @@ func (node *Node) StyleSetDisplay(display Display) {
 	}
 }
 
+func (node *Node) StyleGetDisplay() Display {
+	return node.Style.Display
+}
+
 // StyleSetFlex sets flex
 func (node *Node) StyleSetFlex(flex float32) {
 	if node.Style.Flex != flex {
